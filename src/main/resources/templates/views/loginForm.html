@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragments/main_layout}">
+
+    <head>
+        <title>Log In</title>
+    </head>
+
+    <body>
+        <div layout:fragment="content" class="container mt-5">
+            <!-- param.error - comes from spring security -->
+            <div class="alert alert-danger mx-auto col-sm-12 col-md-9 col-lg-6 alert-dismissible"
+                th:if="${param.error}">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <p>Invalid Email or Password</p>
+            </div>
+            <h2 class="text-center ">Log In</h2>
+            <form th:action="@{/login}" method="post" class="p-0 mx-auto col-sm-12 col-md-9 col-lg-6">
+                <!-- names of input fields must be username and password -->
+                <div class="form-group">
+                    <label for="email" class="form-control-label">Email</label>
+                    <input type="text" class="form-control" id="email" name="username" />
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-control-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" />
+                </div>
+                <input type="submit" value="Submit" class="btn btn-primary w-100 my-3" />
+            </form>
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragments/main_layout}">
+
+    <head>
+        <title>Users</title>
+    </head>
+
+    <body>
+        <div layout:fragment="content" class="container mt-5">
+            <form action="/users" class="form-inline">
+                <div class="form-group row mb-4 mx-auto">
+                    <input type="text" class="form-control px-4" name="name" placeholder="Search User" />
+                    <input type="submit" value="Search" class="btn btn-primary px-4" />
+                </div>
+            </form>
+            <div class="card">
+                <div class="card card-body table-responsive">
+                    <h2 class="text-center mb-4">Users</h2>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Add</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="user:${users}">
+                                <td th:text="${user.name}"></td>
+                                <td th:text="${user.email}"></td>
+                                <td><a th:href="@{/addTask(email=${user.email})}" class="btn btn-info">AddTask</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
